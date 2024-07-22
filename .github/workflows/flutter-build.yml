@@ -101,6 +101,7 @@ jobs:
         shell: bash
 
       - name: Apply patches
+        shell: bash
         run: |
           git apply --ignore-space-change --ignore-whitespace --whitespace=nowarn *.patch
 
