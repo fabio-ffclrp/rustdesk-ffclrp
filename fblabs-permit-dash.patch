@@ -1,3 +1,20 @@
+ flutter/lib/common/widgets/dialog.dart | 2 +-
+ libs/hbb_common/src/lib.rs             | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/flutter/lib/common/widgets/dialog.dart b/flutter/lib/common/widgets/dialog.dart
+index f140a68b0..189ded6d3 100644
+--- a/flutter/lib/common/widgets/dialog.dart
++++ b/flutter/lib/common/widgets/dialog.dart
+@@ -70,7 +70,7 @@ void changeIdDialog() {
+   final rules = [
+     RegexValidationRule('starts with a letter', RegExp(r'^[a-zA-Z]')),
+     LengthRangeValidationRule(6, 16),
+-    RegexValidationRule('allowed characters', RegExp(r'^\w*$'))
++    RegexValidationRule('allowed characters', RegExp(r'^[\w\-]*$'))
+   ];
+ 
+   gFFI.dialogManager.show((setState, close, context) {
 diff --git a/libs/hbb_common/src/lib.rs b/libs/hbb_common/src/lib.rs
 index 15ef31022..436f9bede 100644
 --- a/libs/hbb_common/src/lib.rs
