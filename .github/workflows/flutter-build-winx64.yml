@@ -8,7 +8,7 @@ on:
         default: true
       upload-tag:
         type: string
-        default: "ffclrp"
+        default: "manual"
 
 env:
   WIN_RUST_VERSION: "1.75" # https://github.com/rustdesk/rustdesk/discussions/7503, also 1.78 has ABI change which causes our sciter version not working, https://blog.rust-lang.org/2024/03/30/i128-layout-update.html
@@ -19,7 +19,7 @@ env:
   TAG_NAME: "${{ inputs.upload-tag }}"
   # vcpkg version: 2024.06.15
   VCPKG_COMMIT_ID: "f7423ee180c4b7f40d43402c2feb3859161ef625"
-  VERSION: "1.2.7"
+  VERSION: "1.2.7-FFCLRP"
   # To make a custom build with your own servers set the below secret values
   RS_PUB_KEY: "${{ secrets.RS_PUB_KEY }}"
   RENDEZVOUS_SERVER: "${{ secrets.RENDEZVOUS_SERVER }}"
@@ -28,6 +28,7 @@ env:
   SIGN_BASE_URL: "${{ secrets.SIGN_BASE_URL }}"
 
 jobs:
+#######################################################################################################################
   build-RustDeskTempTopMostWindow:
     uses: ./.github/workflows/third-party-RustDeskTempTopMostWindow.yml
     with:
@@ -39,8 +40,9 @@ jobs:
     strategy:
       fail-fast: false
 
+#######################################################################################################################
   build-for-windows-flutter:
-    name: ${{ matrix.job.target }}
+    name: Windows-Flutter-${{ matrix.job.target }} (${{ matrix.job.os }})
     needs: [build-RustDeskTempTopMostWindow]
     runs-on: ${{ matrix.job.os }}
     strategy:
@@ -193,7 +195,9 @@ jobs:
             ./SignOutput/rustdesk-*.msi
             ./SignOutput/rustdesk-*.exe
 
+#######################################################################################################################
   publish_unsigned:
+    name: Publish Unsigned
     needs:
       - build-for-windows-flutter
     runs-on: ubuntu-latest
