@@ -475,7 +475,7 @@ jobs:
         run: |
           ./build.py --flutter --hwcodec ${{ matrix.job.extra-build-args }}
 
-      - name: create unsigned dmg
+      - name: create unsigned dmgl
         if: env.UPLOAD_ARTIFACT == 'true'
         run: |
           CREATE_DMG="$(command -v create-dmg)"
@@ -1016,15 +1016,15 @@ jobs:
               sciter_arch: x64,
               vcpkg-triplet: x64-linux,
             }
-          - {
-              arch: armv7,
-              target: armv7-unknown-linux-gnueabihf,
-              on: ubuntu-20.04,
-              distro: ubuntu18.04-rustdesk,
-              deb_arch: armhf,
-              sciter_arch: arm32,
-              vcpkg-triplet: arm-linux,
-            }
+#          - {
+#              arch: armv7,
+#              target: armv7-unknown-linux-gnueabihf,
+#              on: ubuntu-20.04,
+#              distro: ubuntu18.04-rustdesk,
+#              deb_arch: armhf,
+#              sciter_arch: arm32,
+#              vcpkg-triplet: arm-linux,
+#            }
     steps:
       - name: Export GitHub Actions cache environment variables
         uses: actions/github-script@v6
@@ -1202,7 +1202,7 @@ jobs:
       matrix:
         job:
           - { target: x86_64-unknown-linux-gnu,  arch: x86_64  }
-          - { target: aarch64-unknown-linux-gnu, arch: aarch64 }
+#          - { target: aarch64-unknown-linux-gnu, arch: aarch64 }
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
