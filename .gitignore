@@ -1,3 +1,4 @@
+*.patch
 /build
 /target
 .vscode
