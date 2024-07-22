@@ -1,0 +1,13 @@
+diff --git a/libs/hbb_common/src/lib.rs b/libs/hbb_common/src/lib.rs
+index 15ef31022..436f9bede 100644
+--- a/libs/hbb_common/src/lib.rs
++++ b/libs/hbb_common/src/lib.rs
+@@ -235,7 +235,7 @@ where
+ }
+ 
+ pub fn is_valid_custom_id(id: &str) -> bool {
+-    regex::Regex::new(r"^[a-zA-Z]\w{5,15}$")
++    regex::Regex::new(r"^[a-zA-Z][\w\-]{5,15}$")
+         .unwrap()
+         .is_match(id)
+ }
