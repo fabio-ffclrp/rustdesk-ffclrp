@@ -194,29 +194,3 @@ jobs:
           files: |
             ./SignOutput/rustdesk-*.msi
             ./SignOutput/rustdesk-*.exe
-
-#######################################################################################################################
-  publish_unsigned:
-    name: Publish Unsigned
-    needs:
-      - build-for-windows-flutter
-    runs-on: ubuntu-latest
-    if: ${{ inputs.upload-artifact }}
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@master
-        with:
-          name: rustdesk-unsigned-windows-x86_64
-          path: ./windows-x86_64/
-
-      - name: Combine unsigned app
-        run: |
-          tar czf rustdesk-${{ env.VERSION }}-unsigned.tar.gz  windows-x86_64
-
-      - name: Publish unsigned app
-        uses: softprops/action-gh-release@v1
-        with:
-          prerelease: true
-          tag_name: ${{ env.TAG_NAME }}
-          files: rustdesk-${{ env.VERSION }}-unsigned.tar.gz
-
