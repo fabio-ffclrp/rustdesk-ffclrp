@@ -19,7 +19,7 @@ env:
   TAG_NAME: "${{ inputs.upload-tag }}"
   # vcpkg version: 2024.06.15
   VCPKG_COMMIT_ID: "f7423ee180c4b7f40d43402c2feb3859161ef625"
-  VERSION: "1.2.7-FFCLRP"
+  VERSION: "1.2.7"
   # To make a custom build with your own servers set the below secret values
   RS_PUB_KEY: "${{ secrets.RS_PUB_KEY }}"
   RENDEZVOUS_SERVER: "${{ secrets.RENDEZVOUS_SERVER }}"
