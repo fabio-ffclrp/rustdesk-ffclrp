@@ -1,4 +1,3 @@
-*.patch
 /build
 /target
 .vscode
@@ -55,3 +54,7 @@ examples/**/target/
 vcpkg_installed
 flutter/lib/generated_plugin_registrant.dart
 libsciter.dylib
+*msi
+.key
+.server
+usbmmidd_v2
